@@ -1,13 +1,31 @@
+// Utitliy logic
+
+function noInputtedWord(word, text) {
+  return ((text.trim().length === 0) || (word.trim().length === 0));
+}
+
 // Business Logic
 
+function topThree(word, text) {
+  const wordArray = text.split(" ");
+  let counter = 0;
+  wordArray.forEach(function(element) {
+    if (element === word) {
+      counter ++;
+    } else {
+      console.log(word + ": " + counter);
+    }
+  });
+};
+  
 function wordCounter(text) {
+  if (text.trim().length === 0) {
+    return 0;
+  }
   let wordCount = 0;
-  newText = text.replaceAll(".", "")
-  const wordArray = newText.split(" ");
-  wordArray.forEach(function(word) {
-    if (word.length === 0) {
-      return 0
-    } else if (!Number(word))  {
+  const wordArray = text.split(" ");
+  wordArray.forEach(function(element) {
+    if (!Number(element)) {
       wordCount++;
     }
   });
@@ -15,7 +33,7 @@ function wordCounter(text) {
 }
 
 function numberOfOccurrencesInText(word, text) {
-  if (text.trim().length === 0 || word.trim().length === 0)  {
+  if (noInputtedWord(word, text))  {
     return 0;
   }
   const wordArray = text.split(" ");
@@ -29,15 +47,20 @@ function numberOfOccurrencesInText(word, text) {
 }
 
 function boldPassage(word, text) {
+  if (noInputtedWord(word, text)) {
+    return "";
+  }
   let htmlString = "<p>";
   let textArray = text.split(" ");
-  textArray.forEach(function(element) {
-    if (word === element) {
+  textArray.forEach(function(element, index) {
+    if (element.toLowerCase().includes(word.toLowerCase())) {
       htmlString = htmlString.concat("<b>" + element + "</b>");
     } else {
       htmlString = htmlString.concat(element);
     }
-    htmlString = htmlString.concat(" ");
+    if (index !== (textArray.length - 1)) {
+      htmlString = htmlString.concat(" ");
+    }
   });
   return htmlString + "</p>";
 }
@@ -52,6 +75,7 @@ $(document).ready(function(){
     const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
     $("#total-count").html(wordCount);
     $("#selected-count").html(occurrencesOfWord);
+    $("#bolded-passage").html(boldPassage(word, passage));
   });
 });
 
