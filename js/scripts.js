@@ -6,18 +6,53 @@ function noInputtedWord(word, text) {
 
 // Business Logic
 
-function topThree(word, text) {
+/* function topThree(word, text) {
   const wordArray = text.split(" ");
   let counter = 0;
   wordArray.forEach(function(element) {
     if (element === word) {
       counter ++;
-    } else {
-      console.log(word + ": " + counter);
+      if (wordArray.length === counter) {
+        console.log(word + ": " + counter);
+      }
     }
   });
+}; 
+element === element.inside(wordArray) && element === element.array[pos, -1]
+
+else if
+counter ++ 
+return value 
+*/
+function topThree(text) {
+  let wordArray = text.split(" ");
+  let sortArray = wordArray.sort();
+  let counter = 0;
+  word = wordArray[0]
+  resultArray = []
+
+  sortArray.forEach(function(element) {
+    if (element === word) {
+      counter ++;
+      } else {
+        resultArray.push(word + ": " + counter)
+        word = element
+        counter = 1 
+    }
+  });
+  resultArray.push(word + ": " + counter)
+  console.log(resultArray)
 };
-  
+
+sortArray.forEach(function(element) {
+  if (element === word) {
+    counter ++;
+    } else {
+      word = element
+      counter = 1
+  }
+
+
 function wordCounter(text) {
   if (text.trim().length === 0) {
     return 0;
