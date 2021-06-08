@@ -42,6 +42,12 @@ function topThree(text) {
   });
   resultArray.push(word + ": " + counter)
   console.log(resultArray)
+  let reverseArray = resultArray.reverse();
+  console.log(reverseArray)
+  let numSortArray = reverseArray.sort();
+  console.log(numSortArray)
+  let finalArray = numSortArray.reverse();
+  console.log(finalArray)
 };
 
 sortArray.forEach(function(element) {
